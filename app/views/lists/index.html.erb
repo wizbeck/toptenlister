@@ -1,4 +1,6 @@
 <h1>All Lists</h1>
-
-Here's all the lists users have posted in no particular order:
-
+<ul></ul>
+ <% @lists.each do |list| %>
+  <li><%= link_to list.title, list_path(list) %></li>
+</ul>
+  <% end %>
