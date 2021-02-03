@@ -1,0 +1,39 @@
+<h1>New Top Ten List</h1>
+
+<%= form_for(@list) do |f| %>
+
+  <%= f.label :item_1 %>
+  <%= f.text_field :item_1 %>
+
+  <%= f.label :item_2 %>
+  <%= f.text_field :item_2 %>
+
+  <%= f.label :item_3 %>
+  <%= f.text_field :item_3 %>
+
+  <%= f.label :item_4 %>
+  <%= f.text_field :item_4 %>
+
+  <%= f.label :item_5 %>
+  <%= f.text_field :item_5 %>
+
+  <%= f.label :item_6 %>
+  <%= f.text_field :item_6 %>
+
+  <%= f.label :item_7 %>
+  <%= f.text_field :item_7 %>
+
+  <%= f.label :item_8 %>
+  <%= f.text_field :item_8 %>
+
+  <%= f.label :item_9 %>
+  <%= f.text_field :item_9 %>
+
+  <%= f.label :item_10 %>
+  <%= f.text_field :item_10 %>
+
+  <%= f.hidden_field :user_id, value: session[:user_id] %>
+
+  <%= f.submit 'Create Top Ten List' %>
+
+<% end %>
