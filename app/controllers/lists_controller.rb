@@ -3,17 +3,16 @@ class ListsController < ApplicationController
   before_action :redirect_if_not_logged_in
   
   def index
-    if params[:user_id] && @user = User.find_by_id(params[:user_id])
-      @lists = List.where("user_id = '#{@user.id}'")
+    if params[:topic_id] && @topic = Topic.find_by_id(params[:topic_id])
+      @lists = List.where("topic_id = '#{@topic.id}'")
     else
-      @error = "lists from that user does not exist" if params[:user_id]
+      @error = "that topic does not exist" if params[:topic_id]
     @lists = List.all
     end
   end
 
   def show
     @list = List.find_by_id(params[:id])
-    
   end
 
   def new
@@ -28,8 +27,6 @@ class ListsController < ApplicationController
     else
       render :new 
     end
-
-
   end
 
   private

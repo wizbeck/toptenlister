@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
   end
 
   def index
-
+    @topics = Topic.all(:order => "desc")
   end
 
   def new

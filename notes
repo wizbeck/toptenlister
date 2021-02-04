@@ -13,3 +13,11 @@ topics/:id/lists - lists with that specific topic
 
 topics/:id/users - users who have lists with this specific topic
 
+Thursday 
+finish out nested routes
+validations
+add fieldwitherrors
+scope
+CRUD functionality with models that need it 
+refactor
+
