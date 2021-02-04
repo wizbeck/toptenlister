@@ -1,0 +1,15 @@
+nested routes
+
+we want users to have a nested lists route and to be able to make a new list from a nested route?
+USERS
+users/:user_id/lists/new - new_user_list_path - create a new list through user lists index page?
+users/:user_id/lists/:id - user_list_path - nested show
+maybe users/:user_id/lists - user_lists_path
+
+
+TOPICS
+topics can have a nested index route
+topics/:id/lists - lists with that specific topic
+
+topics/:id/users - users who have lists with this specific topic
+

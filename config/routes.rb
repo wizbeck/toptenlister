@@ -15,5 +15,13 @@ Rails.application.routes.draw do
   resources :topics
   resources :lists
   resources :users
-  
+
+  resources :users do
+    resources :lists, only: [:show, :index, :new]
+  end
+  resources :topics do
+    resources :lists, only: [:index]
+  end
+
+
 end
