@@ -6,12 +6,16 @@ class ListsController < ApplicationController
     @lists = List.all
   end
 
+  def show
+    @list = List.find_by_id(params[:id])
+    
+  end
+
   def new
     @list = List.new
   end
 
   def create
-    binding.pry
     @list = current_user.lists.build(list_params)
     add_topic_to_list
     if @list.save
@@ -19,6 +23,8 @@ class ListsController < ApplicationController
     else
       render :new 
     end
+
+
   end
 
   private

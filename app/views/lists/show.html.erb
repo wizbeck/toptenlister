@@ -1,0 +1,13 @@
+<h1><%= @list.title %></h1>
+
+  <h3><%= @list.description %></h3>
+
+<ol>
+  <% @list.items.each do |item| %>
+    <% if !item.blank? %>
+    <li><%= item %></li> <br>
+      <% end %>
+  <% end %>
+</ol>  
+  
+  <p>For more lists of the <%= @list.topic.name %> topic click <%= link_to 'here', topic_path(@list.topic) %></p>
