@@ -1,6 +1,12 @@
-<h1>All Lists</h1>
-<ul></ul>
- <% @lists.each do |list| %>
-  <li><%= link_to list.title, list_path(list) %></li>
-</ul>
+<% if @user %>
+  <h1>Lists by <%= @user.username %></h1>
+<% else %>
+  <h1>All Lists</h1>
+<% end %>
+
+<ul>
+  <% @lists.each do |list| %>
+    <li><%= link_to list.title, list_path(list) %></li>
   <% end %>
+</ul>
+  

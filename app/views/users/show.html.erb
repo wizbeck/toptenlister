@@ -1,6 +1,7 @@
 <h1>Lists from <%=@user.username%></h1>
 
-<% @user.lists.each do |list| %>
+<% @user.lists.each do |l| %>
   <ul>
-    <li><% link_to list.title, user_list_path(@user, list) %> </li>
+    <li><% link_to l.title, list_path(l) %></li>
   </ul>
+<% end %>
