@@ -1,9 +1,26 @@
 <h1>New Top Ten List</h1>
+<% if @list.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@list.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-<%= form_for(@list) do |f| %>
-  <%= f.fields_for :topics do |t| %>
-    <%= t.collection_select(:topic_id, Topic.all, :id, :name, {:prompt => "Select a Topic"} ) %>
-  <% end %> 
+    <ul>
+      <% @list.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for([@list, @topic]) do |f| %>
+  <% if @topic %>
+  <%= f.collection_select(:topic_id, Topic.all, :id, :name, include_blank: 'Select Topic') %>
+    <% else %>
+  
+  <%= f.fields_for :topic_attributes do |topic_attribute| %>
+      <%= topic_attribute.label :name, 'New Topic Name:' %>
+      <%= topic_attribute.text_field :name %> <br>
+  <% end %>
+    
   <br>
   <br> 
   <%= f.label :title %>

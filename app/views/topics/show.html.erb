@@ -7,3 +7,5 @@ Top <%= @topic.name %> lists:
     <li><%= link_to list.title, list_path(list) %></li>
   </ul>
 <% end %>
+
+<p> Make a new Top <%=link_to @topic.name, new_topic_list_path(@topic) %> </p>

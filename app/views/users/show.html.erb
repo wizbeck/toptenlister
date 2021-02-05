@@ -1,7 +1,7 @@
 <h1>Lists from <%=@user.username%></h1>
 
+<ul>
 <% @user.lists.each do |l| %>
-  <ul>
-    <li><% link_to l.title, list_path(l) %></li>
-  </ul>
+    <li><% link_to '#{l.title}', list_path(l) %></li>
 <% end %>
+</ul>

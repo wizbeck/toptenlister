@@ -17,10 +17,10 @@ Rails.application.routes.draw do
   resources :users
 
   resources :users do
-    resources :lists, only: [:show, :index, :new]
+    resources :lists, only: [:show, :index]
   end
   resources :topics do
-    resources :lists, only: [:index]
+    resources :lists, only: [:index, :show, :new]
   end
 
 
