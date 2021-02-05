@@ -4,6 +4,8 @@ class List < ApplicationRecord
   accepts_nested_attributes_for :topic, reject_if: proc { |attributes| attributes['name'].blank? }
 #validations need to be added
   validates :title, presence: true
+  validates :item_1, :item_2, :item_3, :item_4, :item_5, presence: true
+  validates :description, length: { max: 60 }
   
   
   

@@ -29,14 +29,13 @@ class ListsController < ApplicationController
       else
         render :new 
       end
-    elsif !params[:topic_id] && @list.topic= Topic.find_or_create_by(name: list_params[:topic_attributes][:name])
+    elsif !params[:topic_id] && @list.topic = Topic.find_or_create_by(name: list_params[:topic_attributes][:name].upcase)
       if @list.save
         redirect_to lists_path(@list)
       else
         render :new 
       end
     else
-      binding.pry
       @error = "Please use the 'Make a List' Tab if you want to change topics."
       render :new
     end
@@ -61,7 +60,6 @@ class ListsController < ApplicationController
         render :edit
       end
     else
-    binding.pry
       @error = "Something went wrong. Try again."
       render :edit
     end
@@ -69,6 +67,13 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find_by_id(params[:id])
+  end
+
+  def destroy
+    binding.pry
+    @list = List.find_by_id(params[:id])
+    @list.destroy
+    redirect_to user_path(current_user)
   end
 
   private
