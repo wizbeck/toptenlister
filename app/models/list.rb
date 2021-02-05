@@ -3,6 +3,9 @@ class List < ApplicationRecord
   belongs_to :topic
   accepts_nested_attributes_for :topic
 #validations need to be added
+
+  
+  
   
 
   def items

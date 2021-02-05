@@ -11,15 +11,16 @@
   </div>
 <% end %>
 
-<%= form_for([@list, @topic]) do |f| %>
-  <% if @topic %>
-  <%= f.collection_select(:topic_id, Topic.all, :id, :name, include_blank: 'Select Topic') %>
-    <% else %>
+<%= form_for([@topic, @list]) do |f| %>
   
-  <%= f.fields_for :topic_attributes do |topic_attribute| %>
-      <%= topic_attribute.label :name, 'New Topic Name:' %>
-      <%= topic_attribute.text_field :name %> <br>
-  <% end %>
+  <%= f.collection_select(:topic_id, Topic.all, :id, :name, include_blank: 'Select Topic') %>
+  
+    <p>Or make your list under a new topic:</p>
+    <%= f.fields_for :topic, @list.build_topic do |topic_attributes| %>
+      <%= topic_attributes.label :name, 'New Topic Name:' %>
+      <%= topic_attributes.text_field :name %> <br>
+      <% end %>
+  
     
   <br>
   <br> 

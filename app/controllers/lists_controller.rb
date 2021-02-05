@@ -7,38 +7,27 @@ class ListsController < ApplicationController
       @lists = List.where("topic_id = '#{@topic.id}'")
     else
       @error = "that topic does not exist" if params[:topic_id]
-    @lists = List.all
+      @lists = List.all
+    end
+  end
+
+  def new
+      @list = current_user.lists.build
+      @list.build_topic unless params[:topic_id] && @topic 
+  end
+
+  def create
+    @list = current_user.lists.build(list_params)
+    binding.pry
+    if @list.save 
+      redirect_to lists_path(@list)
+    else
+      render :new 
     end
   end
 
   def show
     @list = List.find_by_id(params[:id])
-  end
-
-  def new
-    if params[:topic_id] && @topic = Topic.find_by_id(params[:topic_id])
-      @list = current_user.lists.build
-    else
-      @error = "Be sure to select a topic for your list."
-      @list = List.new
-    end
-  end
-
-  def create
-    binding.pry
-    if params[:topic_attributes][:name]
-      @topic = Topic.find_or_create_by(name: params[:topic_attributes][:name])
-    @list = current_user.lists.build(list_params)
-    add_topic_to_list 
-    else
-      if params[:topic_id] && @list.save 
-        redirect_to topic_lists_path(@topic)
-      elsif @list.save
-        redirect_to lists_path
-      else
-        render :new 
-      end
-    end
   end
 
   private

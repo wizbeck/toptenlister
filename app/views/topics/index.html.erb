@@ -1,0 +1,7 @@
+<h1>All TopTenLister Topics</h1>
+
+<ul>
+  <% @topics.each do |topic|%>
+    <li><%=link_to topic.name, topic_lists_path(topic) %></li>
+  <% end %>
+</ul>

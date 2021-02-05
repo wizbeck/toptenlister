@@ -8,4 +8,4 @@ Top <%= @topic.name %> lists:
   </ul>
 <% end %>
 
-<p> Make a new Top <%=link_to @topic.name, new_topic_list_path(@topic) %> </p>
+<p> Make your own Top <%= @topic.name %> list <%= link_to 'here', new_topic_list_path(@topic)%>. </p>
