@@ -1,12 +1,17 @@
 <% if @topic %>
   <h1>Lists from <%= @topic.name %> Topic</h1>
+    <ul>
+      <% @topic.lists.each do |list| %>
+        <li><%= link_to list.title, list_path(list)%> - <%= list.user.username %></li>
+    </ul>
+    <% end %>
+
 <% else %>
   <h1>All Lists</h1>
+  <ul>
+    <% @lists.each do |list| %>
+      <li><%= link_to list.title, list_path(list) %> - <%= list.user.username %></li>
+    <% end %>
+  </ul>
 <% end %>
-
-<ul>
-  <% @lists.each do |list| %>
-    <li><%= link_to list.title, list_path(list) %> - <%= list.user.username %></li>
-  <% end %>
-</ul>
   
