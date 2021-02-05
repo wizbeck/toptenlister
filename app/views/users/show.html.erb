@@ -1,7 +1,10 @@
-<h1>Lists from <%=@user.username%></h1>
-
+<h1>Your Lists</h1>
+    <% if @user.lists.empty? %>
+    <p>You have no top lists created yet.</p>
+    <% else %>
 <ul>
-<% @user.lists.each do |l| %>
-    <li><% link_to l.title, list_path(l) %></li>
-<% end %>
+    <% @user.lists.each do |list| %>
+        <li><%= link_to list.title, list_path(list) %></li>
+    <% end %>
 </ul>
+<% end %>

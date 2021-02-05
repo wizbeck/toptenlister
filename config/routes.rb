@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :lists, only: [:show, :index]
   end
   resources :topics do
-    resources :lists, only: [:index, :show, :new]
+    resources :lists, only: [:index, :new, :create]
   end
 
 

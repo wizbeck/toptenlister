@@ -1,0 +1,67 @@
+<%= form_for([@topic, @list]) do |f| %>
+  <% if !@topic %>
+    <%= f.label :name, 'Topic:'%>
+    <%= f.collection_select(:topic_id, Topic.all, :id, :name, include_blank: 'Select Topic') %>
+    <br>
+    <p>Or make your list under a new topic:</p>
+    <%= f.fields_for :topic, @list.build_topic do |topic_attributes| %>
+      <%= topic_attributes.label :name, 'New Topic Name:' %>
+      <%= topic_attributes.text_field :name %> <br>
+      <% end %>
+    <% else %>
+      <%= f.hidden_field :topic_id %>
+    <% end %>
+  <br>
+  <br> 
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <br>
+  <br>
+  <%= f.label :item_1 %>
+  <%= f.text_field :item_1 %>
+  <br>
+  <br>
+  <%= f.label :item_2 %>
+  <%= f.text_field :item_2 %>
+  <br>
+  <br>
+  <%= f.label :item_3 %>
+  <%= f.text_field :item_3 %>
+  <br>
+  <br>
+  <%= f.label :item_4 %>
+  <%= f.text_field :item_4 %>
+  <br>
+  <br>
+  <%= f.label :item_5 %>
+  <%= f.text_field :item_5 %>
+  <br>
+  <br>
+  <%= f.label :item_6 %>
+  <%= f.text_field :item_6 %>
+  <br>
+  <br>
+  <%= f.label :item_7 %>
+  <%= f.text_field :item_7 %>
+  <br>
+  <br>
+  <%= f.label :item_8 %>
+  <%= f.text_field :item_8 %>
+  <br>
+  <br>
+  <%= f.label :item_9 %>
+  <%= f.text_field :item_9 %>
+  <br>
+  <br>
+  <%= f.label :item_10 %>
+  <%= f.text_field :item_10 %>
+  <br>
+  <br>
+
+    <%= f.submit %>
+
+  <% end %>
