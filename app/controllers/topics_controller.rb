@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def index
-    @topics = Topic.all
+    @topics = Topic.by_most_lists
   end
 
   
