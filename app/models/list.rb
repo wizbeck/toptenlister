@@ -5,7 +5,7 @@ class List < ApplicationRecord
 #validations need to be added
   validates :title, presence: true
   validates :item_1, :item_2, :item_3, :item_4, :item_5, presence: true
-  validates :description, length: { max: 60 }
+  validates :description, length: { maximum: 60 }
   
   
   

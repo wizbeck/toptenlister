@@ -25,13 +25,13 @@ class ListsController < ApplicationController
     @list = current_user.lists.build(list_params)
     if params[:topic_id] == params[:list][:topic_id]
       if @list.save
-        redirect_to lists_path(@list)
+        redirect_to list_path(@list)
       else
         render :new 
       end
     elsif !params[:topic_id] && @list.topic = Topic.find_or_create_by(name: list_params[:topic_attributes][:name].upcase)
       if @list.save
-        redirect_to lists_path(@list)
+        redirect_to list_path(@list)
       else
         render :new 
       end
@@ -49,13 +49,13 @@ class ListsController < ApplicationController
     @list = List.find_by_id(params[:id])
     if params[:list][:topic_id]
       if @list.update(list_params)
-        redirect_to lists_path(@list)
+        redirect_to list_path(@list)
       else
         render :edit 
       end
     elsif !params[:topic_id] && @list.topic= Topic.find_or_create_by(name: list_params[:topic_attributes][:name])
      if @list.update(list_params)
-        redirect_to lists_path(@list)
+        redirect_to list_path(@list)
       else
         render :edit
       end
@@ -70,9 +70,7 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    binding.pry
-    @list = List.find_by_id(params[:id])
-    @list.destroy
+    List.destroy(params[:id])
     redirect_to user_path(current_user)
   end
 
