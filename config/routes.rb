@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
   #omniauth callback
-  get '/auth/:provider/callback' => 'sessions#omniauth'
+  get '/auth/:provider/callback' => 'sessions#google'
 
   resources :topics
   resources :lists

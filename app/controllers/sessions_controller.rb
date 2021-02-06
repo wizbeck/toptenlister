@@ -24,6 +24,11 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def google
+    raise params.inspect
+    @user = User.find_or_create_by
+  end
+
   
 
 end
