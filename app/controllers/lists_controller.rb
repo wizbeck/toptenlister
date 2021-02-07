@@ -1,5 +1,4 @@
 class ListsController < ApplicationController
-  include ListsHelper
   before_action :redirect_if_not_logged_in
   
   def index
@@ -7,16 +6,16 @@ class ListsController < ApplicationController
       @lists = List.where("topic_id = '#{@topic.id}'")
     else
       @error = "that topic does not exist" if params[:topic_id]
-      @lists = List.all
+      @lists = List.all.reverse
     end
   end
 
   def new
     @list = List.new
-    if params[:topic_id] && @topic = Topic.find_by_id(params[:topic_id])
-      @list.topic = @topic
+    if params[:topic_id] 
+      @list = List.new(topic_id: params[:topic_id])
     else
-      @topic = Topic.new
+      @list.topic = Topic.new
     end
   end
 
@@ -29,8 +28,9 @@ class ListsController < ApplicationController
     end
     if @list.save
       redirect_to list_path(@list)
+    elsif @list.topic && !@list.save
+      render :action => "new", :topic_id => @list.topic.id
     else
-      @topic = Topic.new
       render :new
     end
   end
@@ -46,7 +46,7 @@ class ListsController < ApplicationController
     else
       render :edit
     end
-    end
+  end
 
   def show
     if !@list = List.find_by_id(params[:id])

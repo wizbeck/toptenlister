@@ -5,8 +5,5 @@
 <% end %>
 
  <%= render :partial => 'layouts/errors', locals: {object: @list} %>
-<% if !params[:topic_id] %>
- <%= render :partial => 'form', locals: {topic: @topic } %>
-<% else %>
-  <%= render :partial => 'form', locals: {topic: @list.topic } %>
-<% end %>
+
+  <%= render :partial => 'form' %>
