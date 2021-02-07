@@ -15,12 +15,12 @@ Specs:
 - [x] Include logout (how e.g. Devise) - simple session clearing and redirect to root path
 - [x] Include third party signup/login (how e.g. Devise/OmniAuth)
 used omniauth and googleoauth2 to create User model and 'login' to website.
-- [x] Include nested resource show or index (URL e.g. users/2/recipes)- /topics/:id/lists
-- [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)-topics/:topic_id/lists/new from link in topic show page
-- [ ] Include form display of validation errors (form URL e.g. /recipes/new)
+- [x] Include nested resource show or index (URL e.g. users/2/recipes)- /topics/:id/lists nested index
+- [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)- topics/:topic_id/lists/new from link in topic show page to nested new
+- [x] Include form display of validation errors (form URL e.g. /recipes/new)- upon validation faliures errors display on create, update actions when rendering back to new/edit  
 
 Confirm:
 - [ ] The application is pretty DRY
-- [ ] Limited logic in controllers
+- [x] Limited logic in controllers
 - [ ] Views use helper methods if appropriate
-- [ ] Views use partials if appropriate
+- [x] Views use partials if appropriate
