@@ -5,9 +5,9 @@ class List < ApplicationRecord
 #validations need to be added
   validates :title, presence: true
   validates :item_1, :item_2, :item_3, :item_4, :item_5, presence: true
-  validates :description, length: { maximum: 60 }
+  validates :description, length: { in: 1..60 }
   
-   # scope :newest (order -> 'created at')
+   # scope :newest -> { order('created at') }
   
 
   def items

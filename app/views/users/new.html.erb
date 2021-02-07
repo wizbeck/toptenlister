@@ -1,5 +1,9 @@
 <h1>Become a TopTenLister!</h1>
-<p>Sign up here:</p>
+
+<%= render :partial => 'layouts/errors', locals: {object: @user} %>
+
+<h3>Sign up here:</h3>
+
 
 <%= form_for(@user, url: '/signup') do |f| %>
 

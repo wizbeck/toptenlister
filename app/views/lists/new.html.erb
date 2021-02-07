@@ -1,18 +1,12 @@
-<% if @topic %>
+<% if params[:topic_id] %>
 <h1>New Top Ten List for <em><%= @list.topic.name %></em></h1>
 <% else %>
 <h1>New Top Ten List</h1>
 <% end %>
-<% if @list.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@list.errors.count, "error") %> prohibited this article from being saved:</h2>
 
-    <ul>
-      <% @list.errors.each do |error| %>
-        <li><%= error.full_message %></li>
-      <% end %>
-    </ul>
-  </div>
+ <%= render :partial => 'layouts/errors', locals: {object: @list} %>
+<% if !params[:topic_id] %>
+ <%= render :partial => 'form', locals: {topic: @topic } %>
+<% else %>
+  <%= render :partial => 'form', locals: {topic: @list.topic } %>
 <% end %>
-
- <%= render :partial => 'form' %>

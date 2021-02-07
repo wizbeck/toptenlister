@@ -1,3 +1,61 @@
 <h1>Edit your list:</h1>
+<%= render :partial => 'layouts/errors', locals: {object: @list} %>
 
-<%= render :partial => 'form' %>
+
+<%= form_for(@list) do |f| %>
+  
+    <p>Topic selected for this list: <%= @list.topic.name %> </p>
+  <br>
+  <br> 
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <br>
+  <br>
+  <%= f.label :item_1 %>
+  <%= f.text_field :item_1 %>
+  <br>
+  <br>
+  <%= f.label :item_2 %>
+  <%= f.text_field :item_2 %>
+  <br>
+  <br>
+  <%= f.label :item_3 %>
+  <%= f.text_field :item_3 %>
+  <br>
+  <br>
+  <%= f.label :item_4 %>
+  <%= f.text_field :item_4 %>
+  <br>
+  <br>
+  <%= f.label :item_5 %>
+  <%= f.text_field :item_5 %>
+  <br>
+  <br>
+  <%= f.label :item_6 %>
+  <%= f.text_field :item_6 %>
+  <br>
+  <br>
+  <%= f.label :item_7 %>
+  <%= f.text_field :item_7 %>
+  <br>
+  <br>
+  <%= f.label :item_8 %>
+  <%= f.text_field :item_8 %>
+  <br>
+  <br>
+  <%= f.label :item_9 %>
+  <%= f.text_field :item_9 %>
+  <br>
+  <br>
+  <%= f.label :item_10 %>
+  <%= f.text_field :item_10 %>
+  <br>
+  <br>
+
+    <%= f.submit %>
+
+  <% end %>

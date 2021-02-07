@@ -12,31 +12,25 @@ class ListsController < ApplicationController
   end
 
   def new
+    @list = List.new
     if params[:topic_id] && @topic = Topic.find_by_id(params[:topic_id])
-      @list= @topic.lists.build
+      @list.topic = @topic
     else
-      @error = "that topic does not exist" if params[:topic_id]
-      @list = List.new
-      @list.build_topic unless params[:topic_id] && @topic
+      @topic = Topic.new
     end
   end
 
   def create
-    @list = current_user.lists.build(list_params)
-    if params[:topic_id] == params[:list][:topic_id]
-      if @list.save
-        redirect_to list_path(@list)
-      else
-        render :new 
-      end
-    elsif !params[:topic_id] && @list.topic = Topic.find_or_create_by(name: list_params[:topic_attributes][:name].upcase)
-      if @list.save
-        redirect_to list_path(@list)
-      else
-        render :new 
-      end
+    if params[:topic_id]
+      @list = current_user.lists.build(list_params)
+      @list.topic = Topic.find_by_id(params[:topic_id])
     else
-      @error = "Please use the 'Make a List' Tab if you want to change topics."
+      @list = current_user.lists.build(list_params)
+    end
+    if @list.save
+      redirect_to list_path(@list)
+    else
+      @topic = Topic.new
       render :new
     end
   end
@@ -47,26 +41,18 @@ class ListsController < ApplicationController
 
   def update
     @list = List.find_by_id(params[:id])
-    if params[:list][:topic_id]
-      if @list.update(list_params)
-        redirect_to list_path(@list)
-      else
-        render :edit 
-      end
-    elsif !params[:topic_id] && @list.topic= Topic.find_or_create_by(name: list_params[:topic_attributes][:name])
-     if @list.update(list_params)
-        redirect_to list_path(@list)
-      else
-        render :edit
-      end
+    if @list.update(list_params)
+      redirect_to list_path(@list)
     else
-      @error = "Something went wrong. Try again."
       render :edit
     end
-  end
+    end
 
   def show
-    @list = List.find_by_id(params[:id])
+    if !@list = List.find_by_id(params[:id])
+      redirect_to lists_path
+      flash[:message] = "That list does not exist."
+    end
   end
 
   def destroy

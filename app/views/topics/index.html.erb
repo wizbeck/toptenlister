@@ -2,6 +2,6 @@
 
 <ul>
   <% @topics.each do |topic|%>
-    <li><%=link_to topic.name, topic_lists_path(topic) %> - <%= topic.lists.count %> </li>
+    <li><%=link_to topic.name, topic_lists_path(topic) %> - <%= topic.lists.count %> lists </li> <br>
   <% end %>
 </ul>
