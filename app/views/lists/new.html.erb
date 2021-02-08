@@ -1,4 +1,4 @@
-<% if params[:topic_id] %>
+<% if nested_topic? %>
 <h1>New Top Ten List for <em><%= @list.topic.name %></em></h1>
 <% else %>
 <h1>New Top Ten List</h1>

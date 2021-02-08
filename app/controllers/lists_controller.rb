@@ -1,8 +1,9 @@
 class ListsController < ApplicationController
+  include ListsHelper
   before_action :redirect_if_not_logged_in
   
   def index
-    if params[:topic_id] && @topic = Topic.find_by_id(params[:topic_id])
+    if nested_topic?
       @lists = List.where("topic_id = '#{@topic.id}'")
     else
       @error = "that topic does not exist" if params[:topic_id]
@@ -12,15 +13,18 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
-    if params[:topic_id] 
+    if nested_topic?
       @list = List.new(topic_id: params[:topic_id])
+    elsif !nested_topic?
+      @error = "That topic does not exist."
+      render :action => 'new'
     else
       @list.topic = Topic.new
     end
   end
 
   def create
-    if params[:topic_id]
+    if nested_topic?
       @list = current_user.lists.build(list_params)
       @list.topic = Topic.find_by_id(params[:topic_id])
     else
