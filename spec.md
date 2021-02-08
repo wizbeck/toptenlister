@@ -20,7 +20,7 @@ used omniauth and googleoauth2 to create User model and 'login' to website.
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)- upon validation faliures errors display on create, update actions when rendering back to new/edit  
 
 Confirm:
-- [ ] The application is pretty DRY
+- [x] The application is pretty DRY
 - [x] Limited logic in controllers
-- [ ] Views use helper methods if appropriate
+- [x] Views use helper methods if appropriate
 - [x] Views use partials if appropriate
