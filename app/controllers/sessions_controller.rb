@@ -28,9 +28,9 @@ class SessionsController < ApplicationController
     @user = User.find_or_create_by(username: auth['info']['email']) do |user|
       user.password = SecureRandom.hex(10)
     end
-    if !@user.password
-      @user.password = SecureRandom.hex(10)
-    end
+    # if !@user.password
+    #   @user.password = SecureRandom.hex(10)
+    # end
     if @user.save
       session[:user_id] = @user.id
       redirect_to lists_path

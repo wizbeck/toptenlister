@@ -21,3 +21,9 @@ scope
 CRUD functionality with models that need it 
 refactor
 
+create a search feature where a user can enter the any combination of characters and it will render lists on index page with like characters.
+
+collection search, :list.title, List.all, :id, :name,
+ use where, not exact match, %user_input%, like 
+
+ 1. index- form_for text_field
