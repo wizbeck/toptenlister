@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to lists_path
     else
-      flash[:message] = "Incorrect username or password, please try again."
+      @error = "Incorrect username or password, please try again."
       render :new
     end
   end

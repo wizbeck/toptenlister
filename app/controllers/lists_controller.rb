@@ -13,14 +13,14 @@ class ListsController < ApplicationController
 
   def new
     @list = List.new
+    @list.topic = Topic.new
     if nested_topic?
       @list = List.new(topic_id: params[:topic_id])
-    elsif !nested_topic?
-      @error = "That topic does not exist."
-      render :action => 'new'
     else
-      @list.topic = Topic.new
+      @error = "That topic does not exist." if params[:topic_id]
+      render :new
     end
+      
   end
 
   def create

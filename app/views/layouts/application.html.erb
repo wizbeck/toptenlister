@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <div> 
+    <div class="nav"> 
       <% if !logged_in? %>
         <%= link_to 'Log In', login_path %>
         <%= link_to 'Sign Up', signup_path %>
@@ -25,7 +25,7 @@
       <% end %>
     </div>
     <br>
-    <div>
+    <div class="messages">
       <%= flash[:message] if flash[:message] %>
       <%= @error if @error %>
     </div>
