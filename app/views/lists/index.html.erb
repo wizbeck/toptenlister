@@ -15,4 +15,9 @@
     <% end %>
   </ul>
 <% end %>
+
+<%= form_tag('/lists', method: :get) do |f|%>
+  <%= search_field_tag 'search', 'Find a List'%>
+  <%= submit_tag 'search'%>
+  <% end %>
   

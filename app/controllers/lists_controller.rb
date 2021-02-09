@@ -3,7 +3,11 @@ class ListsController < ApplicationController
   before_action :redirect_if_not_logged_in
   
   def index
-    if nested_topic?
+    if params[:search]
+      # Book.where("title LIKE '%#{params[:title]}%'")
+      # @lists = List.where("title LIKE ?", "%#{params[:search]}%")
+       @lists = List.search_lists(params[:search])
+    elsif nested_topic?
       @lists = List.where("topic_id = '#{@topic.id}'")
     else
       @error = "that topic does not exist" if params[:topic_id]
@@ -20,7 +24,6 @@ class ListsController < ApplicationController
       @error = "That topic does not exist." if params[:topic_id]
       render :new
     end
-      
   end
 
   def create
