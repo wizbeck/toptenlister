@@ -11,19 +11,21 @@
   </head>
 
   <body>
-    <div class="nav"> 
-      <% if !logged_in? %>
-        <%= link_to 'Log In', login_path %>
-        <%= link_to 'Sign Up', signup_path %>
-      <% else %>  
-        <%= link_to 'My Account', user_path(current_user)%>
-        <%= link_to 'All Lists', lists_path %>
-        <%= link_to 'List Topics', topics_path%>
-        <%= link_to 'Make a List', new_list_path %>
-        <%= link_to 'Log Out', logout_path, method: "delete" %>
-        
-      <% end %>
-    </div>
+    <nav> 
+        <ul class="nav nav-pills nav-justified">
+          <% if !logged_in? %>
+            <li class="nav-item"><%= link_to 'Home', root_path, {:class => "nav-link"} %></li>
+            <li class="nav-item"><%= link_to 'Log In', login_path, {:class => "nav-link"} %></li>
+            <li class="nav-item"><%= link_to 'Sign Up', signup_path, {:class => "nav-link"} %></li>
+          <% else %>  
+            <li class="nav-item"><%= link_to 'My Account', user_path(current_user), {:class => "nav-link"} %></li>
+            <li class="nav-item"><%= link_to 'All Lists', lists_path, {:class => "nav-link"} %></li>
+            <li class="nav-item"><%= link_to 'List Topics', topics_path, {:class => "nav-link"} %></li>
+            <li class="nav-item"><%= link_to 'Make a List', new_list_path, {:class => "nav-link"} %></li>
+            <li class="nav-item"><%= link_to 'Log Out', logout_path, method: "delete" %></li>
+          <% end %>
+        </ul>
+    </nav>
     <br>
     <div class="messages">
       <%= flash[:message] if flash[:message] %>
