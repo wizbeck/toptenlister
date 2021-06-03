@@ -6,7 +6,7 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import "channels"
-import "packs/bootstrap";
+import "../../../vendor/bootstrap/bootstrap";
 
 Rails.start()
 Turbolinks.start()
