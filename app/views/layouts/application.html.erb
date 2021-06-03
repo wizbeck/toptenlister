@@ -12,17 +12,17 @@
 
   <body>
     <nav> 
-        <ul class="nav nav-pills nav-justified">
+        <ul class="nav nav-pills nav-justified border-bottom">
           <% if !logged_in? %>
             <li class="nav-item"><%= link_to 'Home', root_path, {:class => "nav-link"} %></li>
             <li class="nav-item"><%= link_to 'Log In', login_path, {:class => "nav-link"} %></li>
             <li class="nav-item"><%= link_to 'Sign Up', signup_path, {:class => "nav-link"} %></li>
           <% else %>  
-            <li class="nav-item"><%= link_to 'My Account', user_path(current_user), {:class => "nav-link"} %></li>
+            <li class="nav-item"><%= link_to 'My Lists', user_path(current_user), {:class => "nav-link"} %></li>
             <li class="nav-item"><%= link_to 'All Lists', lists_path, {:class => "nav-link"} %></li>
             <li class="nav-item"><%= link_to 'List Topics', topics_path, {:class => "nav-link"} %></li>
             <li class="nav-item"><%= link_to 'Make a List', new_list_path, {:class => "nav-link"} %></li>
-            <li class="nav-item"><%= link_to 'Log Out', logout_path, method: "delete" %></li>
+            <li class="nav-item"><%= link_to 'Log Out', logout_path, :class => "nav-link", method: "delete" %></li>
           <% end %>
         </ul>
     </nav>
