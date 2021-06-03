@@ -13,20 +13,4 @@
  *= require_tree .
  *= require_self
  */
- #error_explanation {
-  h2 {
-    color: red;
-  }
-  li {
-    color: red;
-  }
-}
-
-.field_with_errors {
-  input {
-    border: 1px solid red;
-  }
-  textarea {
-    border: 1px solid red;
-  }
-}
+@import "./bootstrap.css"
