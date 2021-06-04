@@ -1,9 +1,12 @@
+<div class="container-xs">
 <h1>Welcome To TopTenLists!</h1>
+<div class="card" style="width: 25rem;">
+  <div class="card-body">
+<p class="card-text">Here you can create and view lists of your top ten items of a certain category/topic to share with friends and public as reccommendations.</p>
 
-<p>Here you can create and view lists of your top ten items of a certain category/topic to share with friends and public as reccommendations.</p>
-
-<p><%= link_to 'Log In', login_path %> | <%= link_to 'Sign Up', signup_path %> | <%= button_to 'Log In With Google', '/auth/google_oauth2' %></p>
-
+<%= button_to 'Log In', login_path, method: "get", :class => "btn btn-primary" %> <%= button_to 'Sign Up', signup_path, method: "get" %> <%= button_to 'Log In With Google', '/auth/google_oauth2' %>
+</div>
+</div>
 <div class="card" style="width: 18rem;">
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
@@ -11,4 +14,5 @@
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
+</div>
 </div>
