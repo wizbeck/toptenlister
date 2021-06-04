@@ -12,7 +12,7 @@
 
   <body>
     <nav> 
-        <ul class="nav nav-pills nav-justified border-bottom">
+        <ul class="nav nav-tabs border-bottom">
           <% if !logged_in? %>
             <li class="nav-item"><%= link_to 'Home', root_path, {:class => "nav-link"} %></li>
             <li class="nav-item"><%= link_to 'Log In', login_path, {:class => "nav-link"} %></li>
