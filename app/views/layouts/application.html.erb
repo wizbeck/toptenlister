@@ -11,21 +11,44 @@
   </head>
 
   <body>
-    <nav> 
-        <ul class="nav nav-tabs justify-content-center border-bottom">
+  
+    <nav class="navbar navbar-dark bg-dark sticky-top">
+    <div class="container" >
+      <span class="navbar-brand mb-0 h1">
+      <img src="" alt="" width="30" height="30">
+TopTenLister</span>
+        <ul class="navbar">
           <% if !logged_in? %>
-            <li class="nav-item"><%= link_to 'Home', root_path, {:class => "nav-link"} %></li>
-            <li class="nav-item"><%= link_to 'Log In', login_path, {:class => "nav-link"} %></li>
-            <li class="nav-item"><%= link_to 'Sign Up', signup_path, {:class => "nav-link"} %></li>
+            <li class="nav-item">
+              <%= link_to 'Home', root_path, {:class => "nav-link"} %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Log In', login_path, {:class => "nav-link"} %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Sign Up', signup_path, {:class => "nav-link"} %>
+            </li>
           <% else %>  
-            <li class="nav-item"><%= link_to 'My Lists', user_path(current_user), {:class => "nav-link"} %></li>
-            <li class="nav-item"><%= link_to 'All Lists', lists_path, {:class => "nav-link"} %></li>
-            <li class="nav-item"><%= link_to 'List Topics', topics_path, {:class => "nav-link"} %></li>
-            <li class="nav-item"><%= link_to 'Make a List', new_list_path, {:class => "nav-link"} %></li>
-            <li class="nav-item"><%= link_to 'Log Out', logout_path, :class => "nav-link", method: "delete" %></li>
+            <li class="nav-item">
+              <%= link_to 'My Lists', user_path(current_user), {:class => "nav-link"} %>
+            </li>
+            <li class="nav-item">
+            <%= link_to 'All Lists', lists_path, {:class => "nav-link"} %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'List Topics', topics_path, {:class => "nav-link"} %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Make a List', new_list_path, {:class => "nav-link"} %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Log Out', logout_path, :class => "nav-link", method: "delete" %>
+            </li>
           <% end %>
         </ul>
+      </div>
     </nav>
+
     <br>
     <div class="messages">
       <%= flash[:message] if flash[:message] %>
