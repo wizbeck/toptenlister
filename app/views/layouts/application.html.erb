@@ -12,15 +12,23 @@
 
   <body>
   
-    <nav class="navbar navbar-dark bg-dark sticky-top">
-    <div class="container" >
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
       <span class="navbar-brand mb-0 h1">
-      <img src="" alt="" width="30" height="30">
-TopTenLister</span>
-        <ul class="navbar">
+          TopTenLister
+          </span>
+          <button 
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          >
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+          
+        <ul class="navbar-nav">
           <% if !logged_in? %>
             <li class="nav-item">
-              <%= link_to 'Home', root_path, {:class => "nav-link"} %>
+              <%= link_to 'Home', root_path, {:class => "nav-link active"} %>
             </li>
             <li class="nav-item">
               <%= link_to 'Log In', login_path, {:class => "nav-link"} %>
@@ -46,7 +54,7 @@ TopTenLister</span>
             </li>
           <% end %>
         </ul>
-      </div>
+        </div>
     </nav>
 
     <br>
