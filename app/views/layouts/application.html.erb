@@ -13,9 +13,9 @@
   <body>
   
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
-      <span class="navbar-brand mb-0 h1">
-          TopTenLister
-          </span>
+
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">TopTenLister</span>
           <button 
           class="navbar-toggler"
           data-bs-toggle="collapse"
@@ -55,6 +55,7 @@
           <% end %>
         </ul>
         </div>
+      </div>
     </nav>
 
     <br>
@@ -62,8 +63,9 @@
       <%= flash[:message] if flash[:message] %>
       <%= @error if @error %>
     </div>
-    
-    <%= yield %>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
 
   </body>
 </html>
