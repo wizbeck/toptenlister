@@ -1,20 +1,26 @@
+
 <h1>Become a TopTenLister!</h1>
 
 <%= render :partial => 'layouts/errors', locals: {object: @user} %>
 
-<h3>Sign up here:</h3>
 
+<div class="card">
+  <p class="card-text">Sign up here and share your to lists with the rest of the community:</p>
+    <%= form_for(@user, url: '/signup') do |f| %>
+    <div class="form">
+      <%= f.label :username, 'Username:', :class => "form-label"%>
+      <%= f.text_field :username, :class => "form-control"%> <br>
 
-<%= form_for(@user, url: '/signup') do |f| %>
+      <%= f.label :password, 'Password:', :class => "form-label"%>
+      <%= f.password_field :password, :class => "form-control"%> <br>
+      
+      <br>
 
-  <%= f.label :username, 'Username:'%>
-  <%= f.text_field :username %> <br>
+      <%= f.submit 'Sign Up'%>
+    </div>
 
-  <%= f.label :password, 'Password:' %>
-  <%= f.password_field :password %> <br>
-  <br>
-
-  <%= f.submit 'Sign Up'%>
-
-<% end %>
-<h3>Or: <%= button_to 'Log In With Google', '/auth/google_oauth2' %></h3>
+    <% end %>
+    
+  <h3>Or:</h3> 
+  <%= button_to 'Log In With Google', '/auth/google_oauth2' %>
+</div>
