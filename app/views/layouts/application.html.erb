@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="text-center">
   
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
 
@@ -63,9 +63,9 @@
       <%= flash[:message] if flash[:message] %>
       <%= @error if @error %>
     </div>
-    <div class="container-fluid">
+    
       <%= yield %>
-    </div>
+    
 
   </body>
 </html>
