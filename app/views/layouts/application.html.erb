@@ -59,12 +59,10 @@
     </nav>
 
     <br>
-    
-    <div class="messages">
+    <div class="messages text-danger text-center">
       <%= flash[:message] if flash[:message] %>
       <%= @error if @error %>
     </div>
-    
       <%= yield %>
     
 
