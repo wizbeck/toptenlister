@@ -1,5 +1,5 @@
 <% if object.errors.any? %>
-  <div class="container-fluid text-center mb-3" id="error_explanation" style="width: 28rem; color: red;">
+  <div class="container-fluid text-center mb-3" id="error_explanation" style="width: 50%; color: red;">
     <p>Unable to process:</p>
       <% object.errors.each do |error| %>
         <%= error.full_message %><br/>

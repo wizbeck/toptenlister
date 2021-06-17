@@ -1,9 +1,11 @@
 <% if nested_topic? %>
-<h1>New Top Ten List for <em><%= @list.topic.name %></em></h1>
+  <h1>New Top Ten List for <em><%= @list.topic.name %></em></h1>
 <% else %>
-<h1>New Top Ten List</h1>
+  <h1>New Top Ten List</h1>
 <% end %>
+
 
  <%= render :partial => 'layouts/errors', locals: {object: @list} %>
 
   <%= render :partial => 'form' %>
+
