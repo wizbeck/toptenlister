@@ -3,10 +3,10 @@
 
 <%= render :partial => 'layouts/errors', locals: {object: @user} %>
 
-<div class="container-fluid">
+<div class="container-fluid" style="min-width: 50%;">
 
 
-  <p>Sign up here and share your to lists with the rest of the community:</p>
+  <p class="text-center">Sign up here and share your to lists with the rest of the community:</p>
     <%= form_for(@user, url: '/signup') do |f| %>
     
       <%= f.label :username, 'Username', :class => "form-label"%>

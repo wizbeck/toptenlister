@@ -1,7 +1,8 @@
+<div class="container-fluid">
 <% if @topic %>
-  <h1>Lists from <%= @topic.name %> Topic</h1>
-      <%= form_tag('/lists', method: :get) do |f|%>
-      <%= search_field_tag 'search', 'Find a List'%>
+  <h1 class="text-center">Lists from <%= @topic.name %> Topic</h1>
+      <%= form_tag('/lists', :class => "text-center", method: :get) do |f|%>
+      <%= search_field_tag 'search', "Find a list"%>
       <%= submit_tag 'search'%>
       <% end %>
     <ul>
@@ -12,7 +13,7 @@
     <br>
     <p> Make your own Top <%= @topic.name %> list <%= link_to 'here', new_topic_list_path(@topic)%>.</p>
 <% else %>
-  <h1>All Lists</h1>
+  <h1 class="text-center">All Lists</h1>
   <%= form_tag('/lists', method: :get) do |f|%>
   <%= search_field_tag 'search', 'Find a List'%>
   <%= submit_tag 'search'%>
@@ -23,4 +24,5 @@
     <% end %>
   </ul>
 <% end %>
+</div>
   
