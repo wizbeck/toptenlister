@@ -5,13 +5,18 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require_tree .
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import "channels"
-import "../../../vendor/bootstrap/bootstrap";
-
-
 
 Rails.start()
 Turbolinks.start()
+
+var jQuery = require("jquery")
+require("@popperjs/core")
+import "bootstrap/dist/css/bootstrap.min.css"
+
+global.$ = global.jQuery = jQuery;
+window.$ = window.jQuery = jQuery;
