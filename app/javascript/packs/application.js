@@ -9,9 +9,12 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import "channels"
-import "../../../vendor/bootstrap/bootstrap";
-
-
 
 Rails.start()
 Turbolinks.start()
+
+require("jquery")
+require("@popperjs/core")
+import "bootstrap/dist/css/bootstrap.min.css"
+
+
