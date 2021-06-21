@@ -23,7 +23,9 @@ refactor
 
 create a search feature where a user can enter the any combination of characters and it will render lists on index page with like characters.
 
-collection search, :list.title, List.all, :id, :name,
- use where, not exact match, %user_input%, like 
-
- 1. index- form_for text_field
+NOTES FOR UPDATING PROJECT:
+- Figure out the collection_select on the new list form. For some reason adding a class tag to the form helper does not render the select field with the form-select class to use bootstrap styling.
+- figure out the list style rendering for individual lists and topics. hide the bullet point text-decoration, use some sort of flex and maybe create cards out of each list. maybe a two column form.
+- remove the text value of the search field on the list index page, and create a placeholder instead so that when a use tries to click the search button it will be empty when the click instead of leaving placeholder text in the field
+- center everything on list index view and topics index view.
+- and user's lists view ^^
