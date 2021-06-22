@@ -59,12 +59,13 @@
     </nav>
 
     <br>
+    <div class="container-sm">
     <div class="messages text-danger text-center">
       <%= flash[:message] if flash[:message] %>
       <%= @error if @error %>
     </div>
       <%= yield %>
-    
+    </div>
 
   </body>
 </html>

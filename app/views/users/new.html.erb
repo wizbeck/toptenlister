@@ -1,7 +1,6 @@
 <%= render :partial => 'layouts/errors', locals: {object: @user} %>
-<h1 class="text-center">Become a TopTenLister!</h1>
 
-<div class="container-fluid" style="max-width: 50%;">
+<h1 class="text-center">Become a TopTenLister!</h1>
 
   <p class="text-center">Sign up here and share your to lists with the rest of the community:</p>
     <%= form_for(@user, url: '/signup') do |f| %>
@@ -14,13 +13,11 @@
     
     <br/>
       <div class="text-center">
-        <%= f.submit 'Sign Up', :class => "btn btn-primary mb-3"%>
+        <%= f.submit 'Sign Up', :class => "btn btn-primary mb-2"%>
       </div>
     <% end %>
     <div class="text-center">
       <h3 class="mb-3">Or:</h3> 
       <%= button_to 'Log In With Google', '/auth/google_oauth2', :class => "btn btn-secondary mb-3" %>
     </div>
-
   </div>
-</div>
