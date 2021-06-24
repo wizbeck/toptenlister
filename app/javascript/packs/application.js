@@ -18,6 +18,5 @@ Turbolinks.start()
 require("@popperjs/core")
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
-import "./navbar"
 
 
