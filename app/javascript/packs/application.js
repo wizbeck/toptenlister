@@ -14,9 +14,9 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 
-var jQuery = require("jquery")
+
 require("@popperjs/core")
 import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 
-global.$ = global.jQuery = jQuery;
-window.$ = window.jQuery = jQuery;
+

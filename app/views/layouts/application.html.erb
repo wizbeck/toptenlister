@@ -18,53 +18,57 @@
       <span class="navbar-brand mb-0 h1">TopTenLister</span>
           <button 
           class="navbar-toggler"
+          type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
           >
           <span class="navbar-toggler-icon"></span>
           </button>
+
           <div class="collapse navbar-collapse" id="navbarNav">
           
-        <ul class="navbar-nav">
-          <% if !logged_in? %>
-            <li class="nav-item">
-              <%= link_to 'Home', root_path, {:class => "nav-link"} %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Log In', login_path, {:class => "nav-link"} %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Sign Up', signup_path, {:class => "nav-link"} %>
-            </li>
-          <% else %>  
-            <li class="nav-item">
-              <%= link_to 'My Lists', user_path(current_user), {:class => "nav-link"} %>
-            </li>
-            <li class="nav-item">
-            <%= link_to 'All Lists', lists_path, {:class => "nav-link"} %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'List Topics', topics_path, {:class => "nav-link"} %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Make a List', new_list_path, {:class => "nav-link"} %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Log Out', logout_path, :class => "nav-link", method: "delete" %>
-            </li>
-          <% end %>
-        </ul>
+              <ul class="navbar-nav">
+            <% if !logged_in? %>
+              <li class="nav-item">
+                <%= link_to 'Home', root_path, {:class => "nav-link"} %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Log In', login_path, {:class => "nav-link"} %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Sign Up', signup_path, {:class => "nav-link"} %>
+              </li>
+            <% else %>  
+              <li class="nav-item">
+                <%= link_to 'My Lists', user_path(current_user), {:class => "nav-link"} %>
+              </li>
+              <li class="nav-item">
+              <%= link_to 'All Lists', lists_path, {:class => "nav-link"} %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'List Topics', topics_path, {:class => "nav-link"} %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Make a List', new_list_path, {:class => "nav-link"} %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Log Out', logout_path, :class => "nav-link", method: "delete" %>
+              </li>
+            <% end %>
+          </ul>
+
         </div>
       </div>
     </nav>
 
     <br>
+    <div class="container-sm">
     <div class="messages text-danger text-center">
       <%= flash[:message] if flash[:message] %>
       <%= @error if @error %>
     </div>
       <%= yield %>
-    
+    </div>
 
   </body>
 </html>

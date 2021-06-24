@@ -1,5 +1,4 @@
-<div class="container-fluid">
-  <div class="form-group">
+<div class="form-group" style="max-width: 50%;">
     <%= form_for(@list) do |f| %>
   
       <%= f.collection_select(:topic_id, Topic.all, :id, :name, prompt: "Select existing topic") %>
@@ -59,4 +58,3 @@
       </div>
   </div>
     
-</div>
