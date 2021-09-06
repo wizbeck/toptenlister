@@ -2,12 +2,13 @@ class List < ApplicationRecord
   belongs_to :user
   belongs_to :topic
   accepts_nested_attributes_for :topic, reject_if: proc { |attributes| attributes['name'].blank? }
-#validations need to be added
+  # Validations need to be added
   validates :title, presence: true
   validates :item_1, :item_2, :item_3, :item_4, :item_5, presence: true
   validates :description, length: { in: 1..60 }
   
-   # scope :newest -> { order('created at') }
+  # Scope Methods 
+  scope :order_recent, -> { order(updated_at: :desc) }
   
   def self.search_lists(search)
     where("title LIKE ?", "%#{search}%")
