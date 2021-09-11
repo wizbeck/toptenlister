@@ -11,7 +11,7 @@ class ListsController < ApplicationController
       @lists = List.where("topic_id = '#{@topic.id}'")
     else
       @error = "that topic does not exist" if params[:topic_id]
-      @lists = List.all.reverse
+      @lists = List.order_recent.includes(:user)
     end
   end
 
@@ -47,7 +47,7 @@ class ListsController < ApplicationController
   end
 
   def update
-    @list = List.find_by_id(params[:id])
+    @list = List.find(params[:id])
     if @list.update(list_params)
       redirect_to list_path(@list)
     else
@@ -56,7 +56,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    if !@list = List.find_by_id(params[:id])
+    if !@list = List.find(params[:id])
       redirect_to lists_path
       flash[:message] = "That list does not exist."
     end
