@@ -1,12 +1,12 @@
 <% if @topic %>
   <h1 class="text-center">Lists from <%= @topic.name %> Topic</h1>
-      <%= form_tag('/lists', :class => "text-center", method: :get) do |f|%>
+      <%= form_tag('/lists', class: "", method: :get) do |f|%>
       <%= search_field_tag 'search', "Find a list"%>
-      <%= submit_tag 'search'%>
+      <%= submit_tag 'Search'%>
       <% end %>
-    <ul>
+    <ul class="list-group-flush">
       <% @topic.lists.each do |list| %>
-        <li><%= link_to list.title, list_path(list)%> - <%= list.user.username %></li>
+        <li class="list-group-item"><%= link_to list.title, list_path(list)%> - <%= list.user.username %></li>
         <% end %>
     </ul> 
     <br>
@@ -17,9 +17,9 @@
   <%= search_field_tag 'search', 'Find a List'%>
   <%= submit_tag 'search'%>
   <% end %>
-  <ul>
+  <ul class="list-group-flush">
     <% @lists.each do |list| %>
-      <li><%= link_to list.title, list_path(list) %> - <%= list.user.username %></li>
+      <li class="list-group-item"><%= link_to list.title, list_path(list) %> - <%= list.user.username %></li>
     <% end %>
   </ul>
 <% end %>

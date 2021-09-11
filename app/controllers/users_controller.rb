@@ -16,7 +16,8 @@ class UsersController < ApplicationController
 
   def show #takes to current_user's account page listing all their lists
     redirect_if_not_logged_in
-    @user = User.find_by_id(session[:user_id])
+    @user = User.find(session[:user_id])
+    @lists = @user.lists
   end
 
   private
