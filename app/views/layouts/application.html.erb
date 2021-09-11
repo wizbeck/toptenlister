@@ -2,10 +2,10 @@
 <html>
   <head>
     <title>TopTenLister</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <script src="https://kit.fontawesome.com/b91cfb0624.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -15,7 +15,10 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
 
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">TopTenLister</span>
+      <span class="navbar-brand mb-0 h1">
+        <i class="far fa-list-alt"></i>
+        TopTenLister
+        </span>
           <button 
           class="navbar-toggler"
           type="button"
