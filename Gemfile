@@ -34,6 +34,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
 # RuboCop
+gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 
 group :development, :test do
