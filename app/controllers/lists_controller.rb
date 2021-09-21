@@ -1,12 +1,9 @@
 class ListsController < ApplicationController
   include ListsHelper
   before_action :redirect_if_not_logged_in
-  
   def index
     if params[:search]
-      # Book.where("title LIKE '%#{params[:title]}%'")
-      # @lists = List.where("title LIKE ?", "%#{params[:search]}%")
-       @lists = List.search_lists(params[:search])
+      @lists = List.search_lists(params[:search])
     elsif nested_topic?
       @lists = List.where("topic_id = '#{@topic.id}'")
     else
@@ -73,5 +70,7 @@ class ListsController < ApplicationController
     params.require(:list).permit(:title, :description, :item_1, :item_2, :item_3, :item_4, :item_5, :item_6, :item_7, :item_8, :item_9, :item_10, :topic_id, topic_attributes: [:name])
   end
 
-
+  def search_params
+    params.permit(:search, :commit)
+  end
 end
