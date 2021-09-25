@@ -1,24 +1,25 @@
 class ListsController < ApplicationController
-  include ListsHelper
   before_action :redirect_if_not_logged_in
+  include ListsHelper
+
   def index
     if params[:search]
       @lists = List.search_lists(params[:search])
     elsif nested_topic?
       @lists = List.where("topic_id = '#{@topic.id}'")
     else
-      @error = "that topic does not exist" if params[:topic_id]
+      @error = 'Unable to find topic.' if params[:topic_id]
       @lists = List.order_recent.includes(:user)
     end
   end
 
   def new
     @list = List.new
-    @list.topic = Topic.new
-    if nested_topic?
-      @list = List.new(topic_id: params[:topic_id])
-    else
-      @error = "That topic does not exist." if params[:topic_id]
+    @list.topic = Topic.find_or_initialize_by(id: params[:topic_id])
+    @list.topic_id = params[:topic_id] if nested_topic?
+
+    if !Topic.exists?(id: params[:topic_id])
+      @error = 'Unable to find topic.' if params[:topic_id]
       render :new
     end
   end
@@ -31,9 +32,11 @@ class ListsController < ApplicationController
       @list = current_user.lists.build(list_params)
     end
     if @list.save
-      redirect_to list_path(@list)
+      redirect_to lists_path
+      flash[:notice] = 'Your list has been successfully created.'
     elsif @list.topic && !@list.save
-      render :action => "new", :topic_id => @list.topic.id
+      render action: :new, topic_id: @list.topic.id
+      flash[:message] = 'Something went wrong List did not save.'
     else
       render :new
     end
@@ -53,10 +56,11 @@ class ListsController < ApplicationController
   end
 
   def show
-    if !@list = List.find(params[:id])
+    unless List.find(params[:id])
       redirect_to lists_path
-      flash[:message] = "That list does not exist."
+      flash[:message] = 'List does not exist.'
     end
+    @list = List.find(params[:id])
   end
 
   def destroy
