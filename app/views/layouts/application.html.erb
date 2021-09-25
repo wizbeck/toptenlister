@@ -66,6 +66,9 @@
 
     <br>
     <div class="container-sm">
+    <div class="notice text-success text-center">
+      <%= flash[:notice] if flash[:notice]%>
+    </div>
     <div class="messages text-danger text-center">
       <%= flash[:message] if flash[:message] %>
       <%= @error if @error %>
