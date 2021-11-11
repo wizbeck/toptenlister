@@ -7,6 +7,7 @@ ruby '2.6.1'
 gem 'rails', '~> 6.1.1'
 # Use HAML instead of ERB
 gem 'haml'
+gem 'haml-rails', '~> 2.0'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
 # Replace sqlite3 for postgresql
