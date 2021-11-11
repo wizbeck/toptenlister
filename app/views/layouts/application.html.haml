@@ -1,0 +1,47 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title TopTenLister
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %script{:crossorigin => "anonymous", :src => "https://kit.fontawesome.com/b91cfb0624.js"}
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.sticky-top
+      .container-fluid
+        %span.navbar-brand.mb-0.h1
+          %i.far.fa-list-alt
+          TopTenLister
+        %button.navbar-toggler{"data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
+          %span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+          %ul.navbar-nav
+            - if !logged_in?
+              %li.nav-item
+                = link_to 'Home', root_path, {:class => "nav-link"}
+              %li.nav-item
+                = link_to 'Log In', login_path, {:class => "nav-link"}
+              %li.nav-item
+                = link_to 'Sign Up', signup_path, {:class => "nav-link"}
+            - else
+              %li.nav-item
+                = link_to 'My Lists', user_path(current_user), {:class => "nav-link"}
+              %li.nav-item
+                = link_to 'All Lists', lists_path, {:class => "nav-link"}
+              %li.nav-item
+                = link_to 'List Topics', topics_path, {:class => "nav-link"}
+              %li.nav-item
+                = link_to 'Make a List', new_list_path, {:class => "nav-link"}
+              %li.nav-item
+                = link_to 'Log Out', logout_path, :class => "nav-link", method: "delete"
+    %br/
+    .container-sm
+      .notice.text-success.text-center
+        = flash[:notice] if flash[:notice]
+      .messages.text-danger.text-center
+        = flash[:message] if flash[:message]
+        = @error if @error
+      = yield
