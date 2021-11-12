@@ -1,7 +1,0 @@
-<h1 class="text-center">All List Topics</h1>
-
-<ul>
-  <% @topics.each do |topic|%>
-    <li><%=link_to topic.name, topic_lists_path(topic) %> - <%= topic.lists.count %> lists </li> <br>
-  <% end %>
-</ul>

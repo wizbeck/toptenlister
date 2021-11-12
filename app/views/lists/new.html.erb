@@ -1,9 +1,0 @@
-<%= render :partial => 'layouts/errors', locals: {object: @list} %>
-
-<% if nested_topic? %>
-  <h1 class="text-center">New Top Ten List for <em><%= @list.topic.name %></em></h1>
-<% else %>
-  <h1 class="text-center">New Top Ten List</h1>
-<% end %>
-
-  <%= render :partial => 'form' %>

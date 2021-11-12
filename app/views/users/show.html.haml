@@ -1,0 +1,7 @@
+%h1.text-center Your Lists
+- if @user.lists.empty?
+  %p.text-center You have no top lists created yet.
+- else
+  %ul
+    - @user.lists.each do |list|
+      %li= link_to list.title, list_path(list)
