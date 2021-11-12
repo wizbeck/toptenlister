@@ -25,12 +25,9 @@ class ListsController < ApplicationController
   end
 
   def create
-    if nested_topic?
-      @list = current_user.lists.build(list_params)
-      @list.topic = Topic.find_by_id(params[:topic_id])
-    else
-      @list = current_user.lists.build(list_params)
-    end
+    @list = current_user.lists.build(list_params)
+    @list.topic = Topic.find_by_id(params[:topic_id]) if nested_topic?
+
     if @list.save
       redirect_to lists_path
       flash[:notice] = 'Your list has been successfully created.'
