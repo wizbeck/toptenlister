@@ -13,7 +13,9 @@
       = link_to list.title, list_path(list)
       \-
       %i.fas.fa-user
-      = list.user.username
+      - if list.user.username.include?('@')
+        = list.user.username&.partition('@')&.first
+      - else list.user.username
 - if @topic
   %p
     Make your own Top #{@topic.name} list #{link_to 'here', new_topic_list_path(@topic)}.
