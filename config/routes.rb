@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'sessions#welcome'
-  
+
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
-  #login route
+  # login route
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
 
-  #logout route
+  # logout route
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
-  #omniauth callback
-  get '/auth/:provider/callback' => 'sessions#google'
+  # omniauth callback
+  get '/auth/:provider/callback', to: 'sessions#google'
 
   resources :topics
   resources :lists
@@ -22,9 +22,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :lists, only: [:show, :index]
   end
+
   resources :topics do
     resources :lists, only: [:index, :new, :create]
   end
-
-
 end

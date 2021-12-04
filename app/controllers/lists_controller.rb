@@ -4,12 +4,12 @@ class ListsController < ApplicationController
 
   def index
     if search_params[:search]
-      @lists = List.search_lists(params[:search])
+      @lists = List.includes(:user).search_lists(params[:search])
     elsif nested_topic?
-      @lists = List.where(topic_id: @topic.id)
+      @lists = List.includes(:user).where(topic_id: @topic.id)
     else
       @error = 'Unable to find topic.' if params[:topic_id]
-      @lists = List.order_recent.includes(:user)
+      @lists = List.includes(:user).order_recent
     end
   end
 
