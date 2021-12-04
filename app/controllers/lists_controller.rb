@@ -3,10 +3,10 @@ class ListsController < ApplicationController
   include ListsHelper
 
   def index
-    if params[:search]
+    if search_params[:search]
       @lists = List.search_lists(params[:search])
     elsif nested_topic?
-      @lists = List.where("topic_id = '#{@topic.id}'")
+      @lists = List.where(topic_id: @topic.id)
     else
       @error = 'Unable to find topic.' if params[:topic_id]
       @lists = List.order_recent.includes(:user)
@@ -25,12 +25,9 @@ class ListsController < ApplicationController
   end
 
   def create
-    if nested_topic?
-      @list = current_user.lists.build(list_params)
-      @list.topic = Topic.find_by_id(params[:topic_id])
-    else
-      @list = current_user.lists.build(list_params)
-    end
+    @list = current_user.lists.build(list_params)
+    @list.topic = Topic.find_by_id(params[:topic_id]) if nested_topic?
+
     if @list.save
       redirect_to lists_path
       flash[:notice] = 'Your list has been successfully created.'
@@ -50,6 +47,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     if @list.update(list_params)
       redirect_to list_path(@list)
+      flash[:notice] = 'List successfully updated.'
     else
       render :edit
     end

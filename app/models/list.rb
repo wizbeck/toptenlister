@@ -27,7 +27,7 @@ class List < ApplicationRecord
   # Validations
   validates :title, presence: true
   validates :item_1, :item_2, :item_3, :item_4, :item_5, presence: true
-  validates :description, length: { in: 1..60 }
+  validates :description, length: { maximum: 100 }
 
   # Scopes
   scope :order_recent, -> { order(updated_at: :desc) }

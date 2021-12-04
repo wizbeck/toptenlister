@@ -8,8 +8,4 @@ class TopicsController < ApplicationController
   def index
     @topics = Topic.by_most_lists
   end
-
-  
-
-  
 end
