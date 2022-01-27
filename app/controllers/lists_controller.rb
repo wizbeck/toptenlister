@@ -4,12 +4,12 @@ class ListsController < ApplicationController
 
   def index
     if search_params[:search]
-      @lists = List.includes(:user).search_lists(params[:search])
+      @lists = List.includes(:user, :topic).search_lists(params[:search])
     elsif nested_topic?
-      @lists = List.includes(:user).where(topic_id: @topic.id)
+      @lists = List.includes(:user, :topic).where(topic_id: @topic.id)
     else
       @error = 'Unable to find topic.' if params[:topic_id]
-      @lists = List.includes(:user).order_recent
+      @lists = List.includes(:user, :topic).order_recent
     end
   end
 
@@ -18,7 +18,7 @@ class ListsController < ApplicationController
     @list.topic = Topic.find_or_initialize_by(id: params[:topic_id])
     @list.topic_id = params[:topic_id] if nested_topic?
 
-    if !Topic.exists?(id: params[:topic_id])
+    if !Topic.exists?(params[:topic_id])
       @error = 'Unable to find topic.' if params[:topic_id]
       render :new
     end
@@ -30,10 +30,10 @@ class ListsController < ApplicationController
 
     if @list.save
       redirect_to lists_path
-      flash[:notice] = 'Your list has been successfully created.'
+      flash[:notice] = 'Your List was successfully created.'
     elsif @list.topic && !@list.save
       render action: :new, topic_id: @list.topic.id
-      flash[:message] = 'Something went wrong List did not save.'
+      flash[:message] = 'Something went wrong. Your List did not save.'
     else
       render :new
     end
@@ -54,15 +54,18 @@ class ListsController < ApplicationController
   end
 
   def show
-    unless List.find(params[:id])
-      redirect_to lists_path
+    if List.exists?(params[:id])
+      @list = List.includes(:topic).find(params[:id])
+    else
       flash[:message] = 'List does not exist.'
+      redirect_to lists_path
     end
-    @list = List.find(params[:id])
   end
 
   def destroy
-    List.destroy(params[:id])
+    @list = List.find(params[:id])
+    List.delete(params[:id])
+    flash[:message] = "Deleted #{@list.title}"
     redirect_to user_path(current_user)
   end
 
