@@ -1,0 +1,10 @@
+.container-sm
+  - if flash[:notice]
+    .alert.alert-success.text-center.alert-dismissible.fade.show{role: 'alert'}
+      = flash[:notice]
+      %button.btn-close{data: {bs_dismiss: 'alert'}, aria_label: 'Close'}
+  - if flash[:message]
+    .alert.alert-danger.text-center.alert-dismissible.fade.show{role: 'alert'}
+      = flash[:message] if flash[:message]
+      = @error if @error
+      %button.btn-close{data: {bs_dismiss: 'alert'}, aria_label: 'Close'}

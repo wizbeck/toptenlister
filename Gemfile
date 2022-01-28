@@ -49,6 +49,8 @@ group :development, :test do
 end
 
 group :development do
+  # bullet used for finding N+1 queries
+  gem 'bullet'
   # Faker gem for seeding data
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', branch: 'master'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
