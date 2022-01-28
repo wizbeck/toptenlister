@@ -1,10 +1,8 @@
 class SessionsController < ApplicationController
   def welcome
-
   end
 
   def new
-
   end
 
   def create
@@ -13,7 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to lists_path
     else
-      @error = "Incorrect username or password, please try again."
+      flash.now[:message] = 'Username or password incorrect, please try again.'
       render :new
     end
   end
@@ -41,5 +39,9 @@ class SessionsController < ApplicationController
 
   def auth
     request.env['omniauth.auth']
+  end
+
+  def user_params
+    params.require(:user).permit(:username, :password)
   end
 end
