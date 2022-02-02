@@ -3,13 +3,18 @@ class ListsController < ApplicationController
   include ListsHelper
 
   def index
+    # TODO: add param variables to eliminate if else statement
+    @page = params[:page] || 1
+    @search = params[:search] || ''
+    @topic = Topic.exists?(id: params[:topic_id]) ? params[:topic_id] : nil
+
     if search_params[:search]
-      @lists = List.includes(:user, :topic).search_lists(params[:search])
+      @lists = List.includes(:user).search_lists(params[:search]).page(@page)
     elsif nested_topic?
-      @lists = List.includes(:user, :topic).where(topic_id: @topic.id)
+      @lists = List.includes(:user).where(topic_id: @topic.id).page(@page)
     else
-      @error = 'Unable to find topic.' if params[:topic_id]
-      @lists = List.includes(:user, :topic).order_recent
+      flash.now[:error] = 'Unable to find topic.' if params[:topic_id]
+      @lists = List.includes(:user).page(@page)
     end
   end
 

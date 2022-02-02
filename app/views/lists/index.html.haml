@@ -7,13 +7,25 @@
   = search_field_tag 'search', nil, class: 'form-control', placeholder: 'Search'
   = submit_tag 'Search', class: 'btn btn-primary'
   = button_to 'Clear', lists_path, method: :get, class:'btn btn-secondary' if params[:search].present?
-%ul.list-group-flush
-  - @lists.each do |list|
-    %li.list-group-item
-      = link_to list.title, list_path(list)
-      \-
-      %i.fas.fa-user
-        = list.user.username
+.col-6.rounded-3.border
+  -# TODO: center pagination elements for clean layout
+  .col
+    = page_entries_info @lists, entry_name: 'List'
+  .col
+    = paginate @lists, left: 2, right: 2, inner_window: 0
+
+  %ul.list-group
+    - @lists.each do |list|
+      %div.list-group-item.list-group-item-action.listBtn
+        = link_to list.title, list_path(list), {class: 'fw-bold'}
+        %span.float-end
+          = time_ago(list)
+        .userInfo
+          %i.fas.fa-user
+          = list.user.username
+
+  = paginate @lists, left: 2, right: 2, inner_window: 0
+
 - if @topic
   %p
     Make your own Top #{@topic.name} list #{link_to 'here', new_topic_list_path(@topic)}.
