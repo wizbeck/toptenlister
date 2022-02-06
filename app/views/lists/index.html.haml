@@ -1,31 +1,34 @@
-- if @topic
-  %h1.text-center
-    Lists from #{@topic.name} Topic
-- else
-  %h1.text-center All Lists
-= form_tag('/lists', method: :get, class: 'input-group w-50 mb-3') do |f|
-  = search_field_tag 'search', nil, class: 'form-control', placeholder: 'Search'
-  = submit_tag 'Search', class: 'btn btn-primary'
-  = button_to 'Clear', lists_path, method: :get, class:'btn btn-secondary' if params[:search].present?
-.col-6.rounded-3.border
-  -# TODO: center pagination elements for clean layout
-  .col
-    = page_entries_info @lists, entry_name: 'List'
-  .col
-    = paginate @lists, left: 2, right: 2, inner_window: 0
+%h1.text-center
+  - if @topic
+    = "Lists from #{@topic.name} Topic"
+  - else
+    = "All Lists"
 
-  %ul.list-group
-    - @lists.each do |list|
-      %div.list-group-item.list-group-item-action.listBtn
-        = link_to list.title, list_path(list), {class: 'fw-bold'}
-        %span.float-end
-          = time_ago(list)
-        .userInfo
+.col-lg-8.mx-auto.mb-4
+  = form_tag('/lists', method: :get, class: 'input-group mb-3') do |f|
+    = search_field_tag 'search', @search, class: 'form-control', placeholder: 'Search'
+    = submit_tag 'Search', class: 'btn btn-primary'
+    = button_to 'Clear', lists_path, method: :get, class:'btn btn-secondary' if params[:search].present?
+  .border.rounded-3.mx-auto
+    -# TODO: center pagination elements for clean layout
+    .text-center
+      = page_entries_info @lists, entry_name: 'List'
+    .d-flex.justify-content-center
+      = paginate @lists, left: 1, right: 1, inner_window: 0
+
+    .col.list-group.mx-auto.p-4
+      - @lists.each do |list|
+        = link_to(list, {class: 'd-block list-group-item list-group-item-action'}) do
+          %div.fw-bold
+            = list.title
+          %span.float-end.fw-light
+            = time_ago(list)
           %i.fas.fa-user
-          = list.user.username
-
-  = paginate @lists, left: 2, right: 2, inner_window: 0
+          %span
+            = list.user.username
+    .d-flex.justify-content-center
+      = paginate @lists, left: 2, right: 2, inner_window: 0
 
 - if @topic
-  %p
-    Make your own Top #{@topic.name} list #{link_to 'here', new_topic_list_path(@topic)}.
+  %p.text-center
+    = "Make your own Top #{@topic.name} list #{link_to 'here', new_topic_list_path(@topic)}."
