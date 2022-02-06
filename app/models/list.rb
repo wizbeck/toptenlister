@@ -36,7 +36,7 @@ class List < ApplicationRecord
   paginates_per 25
 
   def self.search_lists(search)
-    where('title LIKE ?', "%#{search}%").order_recent
+    where('title LIKE ?', "%#{search}%")
   end
 
   def items
