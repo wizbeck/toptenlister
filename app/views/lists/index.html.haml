@@ -11,10 +11,10 @@
     = button_to 'Clear', lists_path, method: :get, class:'btn btn-secondary' if params[:search].present?
   .border.rounded-3.mx-auto
     -# TODO: center pagination elements for clean layout
-    .text-center
+    .text-center.mt-3
       = page_entries_info @lists, entry_name: 'List'
     .d-flex.justify-content-center
-      = paginate @lists, left: 1, right: 1, inner_window: 0
+      = paginate @lists, left: 2, right: 2, inner_window: 0
 
     .col.list-group.mx-auto.p-4
       - @lists.each do |list|

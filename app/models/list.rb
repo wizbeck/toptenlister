@@ -21,7 +21,7 @@
 class List < ApplicationRecord
   # Default Scope
   default_scope { order(updated_at: :desc) }
-  
+
   # Relationships
   belongs_to :user
   belongs_to :topic
