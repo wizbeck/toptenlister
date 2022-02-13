@@ -9,12 +9,12 @@ class ListsController < ApplicationController
     @topic = Topic.exists?(id: params[:topic_id]) ? params[:topic_id] : nil
 
     if search_params[:search]
-      @lists = List.includes(:user).search_lists(params[:search]).page(@page)
+      @lists = List.includes(:user).search_lists(@search).page(@page)
     elsif nested_topic?
-      @lists = List.includes(:user).where(topic_id: @topic.id).page(@page)
+      @lists = List.includes(:user).search_lists(@search).where(topic_id: @topic.id).page(@page)
     else
       flash.now[:error] = 'Unable to find topic.' if params[:topic_id]
-      @lists = List.includes(:user).page(@page)
+      @lists = List.includes(:user).search_lists.page(@page)
     end
   end
 
