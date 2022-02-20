@@ -6,11 +6,11 @@
 
 .col-lg-8.mx-auto.mb-4
   = form_tag('/lists', method: :get, class: 'input-group mb-3') do |f|
-    = search_field_tag 'search', @search, class: 'form-control', placeholder: 'Search'
+    = hidden_field_tag 'topic_id', params[:topic_id]
+    = text_field_tag 'search', @search, class: 'form-control rounded', placeholder: 'Search'
     = submit_tag 'Search', class: 'btn btn-primary'
-    = button_to 'Clear', lists_path, method: :get, class:'btn btn-secondary' if params[:search].present?
+    = link_to 'Clear', params[:topic_id].present? ? topic_lists_path(params[:topic_id]) : lists_path, class:'btn btn-secondary' if params[:search].present?
   .border.rounded-3.mx-auto
-    -# TODO: center pagination elements for clean layout
     .text-center.mt-3
       = page_entries_info @lists, entry_name: 'List'
     .d-flex.justify-content-center
@@ -31,4 +31,4 @@
 
 - if @topic
   %p.text-center
-    = "Make your own Top #{@topic.name} list #{link_to 'here', new_topic_list_path(@topic)}."
+    Make your own Top #{@topic.name} list #{link_to 'here', new_topic_list_path(@topic)}.
