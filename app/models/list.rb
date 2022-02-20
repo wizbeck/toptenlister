@@ -36,7 +36,7 @@ class List < ApplicationRecord
   paginates_per 25
 
   # TODO: search_lists is broken, find out whats happening
-  def self.search_lists(search)
+  def self.search_lists(search = nil)
     # Use 'ILIKE' in postgres for case insensitive search on strings
     where('title ILIKE ?', "%#{search}%")
   end
