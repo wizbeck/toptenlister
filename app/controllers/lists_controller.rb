@@ -1,20 +1,17 @@
 class ListsController < ApplicationController
-  before_action :redirect_if_not_logged_in
   include ListsHelper
+  before_action :redirect_if_not_logged_in
+  before_action :nested_topic?, only: [:index]
 
   def index
-    # TODO: add param variables to eliminate if else statement
     @page = params[:page] || 1
     @search = params[:search] || ''
-    @topic = Topic.exists?(id: params[:topic_id]) ? params[:topic_id] : nil
 
-    if search_params[:search]
-      @lists = List.includes(:user).search_lists(@search).page(@page)
-    elsif nested_topic?
-      @lists = List.includes(:user).search_lists(@search).where(topic_id: @topic.id).page(@page)
-    else
-      flash.now[:error] = 'Unable to find topic.' if params[:topic_id]
-      @lists = List.includes(:user).search_lists.page(@page)
+    @lists = List.includes(:user).search_lists(@search).page(@page)
+
+    respond_to do |format|
+      format.html { flash.now[:error] = 'Unable to find topic.' if params[:topic_id]
+                    render collection: @lists }
     end
   end
 
@@ -77,10 +74,10 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title, :description, :item_1, :item_2, :item_3, :item_4, :item_5, :item_6, :item_7, :item_8, :item_9, :item_10, :topic_id, topic_attributes: [:name])
-  end
-
-  def search_params
-    params.permit(:search, :commit)
+    params.require(:list).permit(
+      :title, :description, :item_1, :item_2, :item_3, :item_4,
+      :item_5, :item_6, :item_7, :item_8, :item_9, :item_10,
+      :topic_id, topic_attributes: [:name]
+    )
   end
 end
