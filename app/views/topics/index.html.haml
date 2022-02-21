@@ -1,7 +1,11 @@
 %h1.text-center All List Topics
-%ul
+.row.col-lg-12.d-flex-row
   - @topics.each do |topic|
-    %li
-      = link_to topic.name, topic_lists_path(topic)
-      \- #{topic.lists.count} lists
-    %br/
+    .col-lg-3.col-md-4.col-sm-6
+      .card.mb-3
+        %h6.card-header
+          = topic.name
+        .card-body
+          %p.card-text
+            #{topic.lists.count} lists created
+          = link_to 'Lists', topic_lists_path(topic), class: 'btn btn-primary'
