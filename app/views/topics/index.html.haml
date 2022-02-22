@@ -1,7 +1,11 @@
 %h1.text-center All List Topics
-%ul
+.row.d-flex.justify-content-center
   - @topics.each do |topic|
-    %li
-      = link_to topic.name, topic_lists_path(topic)
-      \- #{topic.lists.count} lists
-    %br/
+    .col-lg-3.col-md-4.col-sm-6
+      .card
+        %h6.card-header
+          = topic.name
+        .card-body
+          %p.card-text
+            #{topic.lists.size} lists created
+          = link_to 'Lists', topic_lists_path(topic), class: 'btn btn-primary'

@@ -24,7 +24,7 @@ class List < ApplicationRecord
 
   # Relationships
   belongs_to :user
-  belongs_to :topic
+  belongs_to :topic, counter_cache: true
   accepts_nested_attributes_for :topic, reject_if: proc { |attributes| attributes['name'].blank? }
 
   # Validations
