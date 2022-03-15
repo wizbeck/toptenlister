@@ -4,5 +4,6 @@ namespace :counters do
     Topic.find_each do |topic|
       Topic.reset_counters(topic.id, :lists_count)
     end
+    puts 'Updated Topics list cache counters.'
   end
 end

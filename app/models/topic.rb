@@ -4,6 +4,7 @@
 # "name" :string
 # "created_at" :datetime, precision: 6, null: false
 # "updated_at" :datetime, precision: 6, null: false
+# "lists_count" :integer, counter_cache
 
 class Topic < ApplicationRecord
   # Relationships
