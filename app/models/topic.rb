@@ -4,6 +4,7 @@
 # "name" :string
 # "created_at" :datetime, precision: 6, null: false
 # "updated_at" :datetime, precision: 6, null: false
+# "lists_count" :integer, counter_cache
 
 class Topic < ApplicationRecord
   # Relationships
@@ -17,4 +18,10 @@ class Topic < ApplicationRecord
 
   # Scopes
   scope :by_most_lists, -> { left_joins(:lists).group('topics.id').order('count(lists.topic_id) desc') }
+
+  def self.plucked_names
+    pluck(:id, :name) do
+      [id, name]
+    end.to_h
+  end
 end
