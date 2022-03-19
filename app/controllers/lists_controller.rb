@@ -67,7 +67,7 @@ class ListsController < ApplicationController
   def destroy
     @list = List.find(params[:id])
     if @list.delete
-      flash[:message] = "Deleted #{@list.title}"
+      flash[:notice] = "Deleted #{@list.title}"
       redirect_to user_path(current_user)
     else
       flash[:alert] = "Something went wrong. Could not delete List #{@list.title}"

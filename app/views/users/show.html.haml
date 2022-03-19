@@ -1,7 +1,11 @@
 %h1.text-center Your Lists
-- if @user.lists.empty?
-  %p.text-center You have no top lists created yet.
-- else
-  %ul
-    - @user.lists.each do |list|
-      %li= link_to list.title, list_path(list)
+.col-5.list-group.mx-auto.p-4
+  - if @lists.empty?
+    %p.text-center You have no top lists created yet.
+  - else
+    - @lists.each do |l|
+      = link_to(l, {class: 'd-block list-group-item list-group-item-action'}) do
+        %div.fw-bold
+          = l.title
+        %span.float-end.fw-light
+          = time_ago(l)
