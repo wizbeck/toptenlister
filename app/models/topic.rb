@@ -18,4 +18,10 @@ class Topic < ApplicationRecord
 
   # Scopes
   scope :by_most_lists, -> { left_joins(:lists).group('topics.id').order('count(lists.topic_id) desc') }
+
+  def self.plucked_names
+    pluck(:id, :name) do
+      [id, name]
+    end.to_h
+  end
 end
