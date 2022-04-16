@@ -1,9 +1,9 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %title TopTenLister
-    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}
     %script{:crossorigin => "anonymous", :src => "https://kit.fontawesome.com/b91cfb0624.js"}
     = csrf_meta_tags
     = csp_meta_tag
@@ -37,7 +37,7 @@
                 = link_to 'Make a List', new_list_path, class: "nav-link #{active_class(new_list_path)}"
               %li.nav-item
                 = link_to 'Log Out', logout_path, method: :delete, class: "nav-link", data: { confirm: "Are you sure?" }
-    %br/
+    %br
     = render 'layouts/message_container'
     .container
       = yield
