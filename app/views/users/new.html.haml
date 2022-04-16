@@ -1,4 +1,5 @@
 - url_opt = request.url == signup_url ? signup_path : login_path
+- submit = url_opt == login_path ? 'Log In' : 'Sign Up'
 
 - if url_opt == signup_path
   %h1.text-center Become a TopTenLister!
@@ -15,16 +16,14 @@
       .form-group
         = f.label :password, 'Password', class: 'form-label'
         = f.password_field :password, class: 'form-control'
-      - if request.path == signup_path
+      - if url_opt == signup_path
         .form-group
           = f.label :password_confirmation, 'Confirm Password', class: 'form-label'
           = f.password_field :password_confirmation, class: 'form-control'
       %br
       %br
       .text-center
-        = f.submit 'Sign Up', class: "btn btn-primary mb-2"
-      .text-center
-        %h3.mb-3 Or:
-        = button_to '/auth/google_oauth2', class: "btn btn-secondary mb-3"  do
+        = f.submit submit, class: "btn btn-primary"
+        = link_to '/auth/google_oauth2', method: :post, class: "btn btn-secondary rounded-end"  do
           = 'Log in with'
           %i.fab.fa-google
