@@ -50,6 +50,9 @@ group :development, :test do
 end
 
 group :development do
+  # Better errors usage
+  gem 'better_errors'
+  gem 'binding_of_caller'
   # bullet used for finding N+1 queries
   gem 'bullet'
   # Faker gem for seeding data
