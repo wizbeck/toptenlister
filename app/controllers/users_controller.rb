@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :redirect_if_not_logged_in, only: [:show]
+  skip_before_action :verify_authenticity_token, only: :create
 
+  # Do we need this?
   def new
     @user = User.new
   end
@@ -11,7 +13,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to lists_path
     else
-      render :new
+      flash.now[:message] = "Sign up failed: #{@user.errors.full_messages.join("\n")}"
+      render 'users/new'
     end
   end
 
@@ -23,6 +26,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :password_confirmation)
   end
 end

@@ -1,10 +1,15 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: %i[new create]
+
   def welcome
   end
 
+  # GET /signup
   def new
+    render 'users/new'
   end
 
+  # POST /signup
   def create
     user = User.find_by(username: params[:user][:username])
     if user && user.authenticate(params[:user][:password])
@@ -12,7 +17,7 @@ class SessionsController < ApplicationController
       redirect_to lists_path
     else
       flash.now[:message] = 'Username or password incorrect, please try again.'
-      render :new
+      render 'users/new'
     end
   end
 
@@ -24,13 +29,16 @@ class SessionsController < ApplicationController
   # Google oauth login for users who use google to log in to website
   def google
     @user = User.find_or_create_by(username: auth['info']['email']) do |user|
-      user.password = SecureRandom.hex(10)
+      # creates a random password for users to login to bypass verficiation while also being secure
+      user.password = SecureRandom.hex(20)
     end
 
     if @user.save
       session[:user_id] = @user.id
+      flash[:notice] = 'Successfully logged in!'
       redirect_to lists_path
     else
+      flash[:alert] = 'Something went wrong. Please try again.'
       redirect_to :root
     end
   end
