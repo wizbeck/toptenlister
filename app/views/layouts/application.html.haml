@@ -10,12 +10,12 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.sticky-top
+    %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.sticky-top
       .container-fluid
         %span.navbar-brand.mb-0.h1
           %i.far.fa-list-alt
           TopTenLister
-        %button.navbar-toggler{ data: { bs_toggle: 'collapse', bs_target: 'navbarNav' }, type: 'button' }
+        %button.navbar-toggler{ data: { bs_toggle: 'collapse', bs_target: '#navbarNav' }, type: 'button' }
           %span.navbar-toggler-icon
         #navbarNav.collapse.navbar-collapse
           %ul.navbar-nav

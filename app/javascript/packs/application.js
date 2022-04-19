@@ -17,7 +17,6 @@ Turbolinks.start()
 require("jquery")
 require("@popperjs/core")
 require("bootstrap")
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap"
+import 'bootstrap/dist/css/bootstrap.min.css';
 // Import new javascript files here:
 import '../src'
